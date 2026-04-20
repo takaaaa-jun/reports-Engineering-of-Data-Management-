@@ -1,0 +1,22 @@
+{
+    "name": "Engineering of Data Management Env",
+    "dockerComposeFile": "../docker-compose.yaml",
+    "service": "python",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-azuretools.vscode-docker",
+                "mtxr.sqltools",
+                "mtxr.sqltools-driver-mysql"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.analysis.extraPaths": ["/app/src"]
+            }
+        }
+    },
+    "remoteUser": "root"
+}
