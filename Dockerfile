@@ -10,7 +10,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     openssh-client \
     libatomic1 \
-    default-mysql-client \
+    gnupg \
+    && curl -fsSL https://repo.mysql.com/RPM-GPG-KEY-mysql-2025 | gpg --dearmor -o /usr/share/keyrings/mysql-keyring.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/mysql-keyring.gpg] http://repo.mysql.com/apt/debian/ bookworm mysql-8.0" > /etc/apt/sources.list.d/mysql.list \
+    && apt-get update && apt-get install -y --no-install-recommends \
+        mysql-community-client \
     && rm -rf /var/lib/apt/lists/*
 
 # requirements.txtをコピーしてインストール
