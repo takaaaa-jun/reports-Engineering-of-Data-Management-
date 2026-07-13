@@ -1,5 +1,5 @@
 ```sql
 CREATE DATABASE report2;
-CREATE TABLE
+CREATE TABLE body_data()
 
 ```

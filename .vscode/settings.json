@@ -2,5 +2,11 @@
   "git.autorefresh": true,
   "git.autofetch": true,
   "git.autoStash": false,
-  "git.detectWorktrees": true
+  "git.detectWorktrees": true,
+  "git.decorations.enabled": true,
+  "explorer.decorations.colors": true,
+  "explorer.decorations.badges": true,
+  "files.usePolling": true,
+  "git.untrackedChanges": "mixed",
+  "git.refreshOnWindowFocus": true
 }
