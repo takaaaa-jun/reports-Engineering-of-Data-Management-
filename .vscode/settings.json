@@ -1,7 +1,6 @@
 {
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 1000,
   "git.autorefresh": true,
   "git.autofetch": true,
-  "git.autoStash": false
+  "git.autoStash": false,
+  "git.detectWorktrees": true
 }
