@@ -1,4 +1,5 @@
 ```sql
 CREATE DATABASE report2;
 CREATE TABLE
+
 ```
