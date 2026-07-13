@@ -25,6 +25,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN mkdir -p /app/src /app/data
 
 # MySQLクライアントのデフォルト接続設定を追加
-RUN printf "[client]\nhost=mysql\nssl=FALSE\n" > /root/.my.cnf
+RUN printf "[client]\nhost=mysql\nssl-mode=DISABLED\n" > /root/.my.cnf
 
 CMD ["bash"]
