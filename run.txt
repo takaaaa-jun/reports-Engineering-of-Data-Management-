@@ -1,3 +1,0 @@
-docker exec python python /app/src/tests/test.py
-docker exec python python (ファイルパス)
-docker exec -it mysql mysql -u user01 -p

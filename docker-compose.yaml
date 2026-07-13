@@ -1,4 +1,19 @@
 services:
+  workspace:
+    build: .
+    container_name: workspace
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      mysql:
+        condition: service_healthy
+    tty: true
+    stdin_open: true
+    networks:
+      - edm-network
+
   python:
     build: .
     container_name: python
@@ -17,8 +32,6 @@ services:
   mysql:
     image: mysql:8.0
     container_name: mysql
-    env_file:
-      - .env
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -27,6 +40,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql-files
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s

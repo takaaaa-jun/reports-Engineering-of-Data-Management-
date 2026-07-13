@@ -1,34 +1,27 @@
-"""
-MySQL接続テスト用スクリプト
-Pythonコンテナ内で実行: python /app/src/tests/test_connection.py
-"""
-
 import os
-
 from dotenv import load_dotenv
 import mysql.connector
 
-# .envファイルを読み込む（コンテナ外で実行する場合に必要）
-load_dotenv("/app/.env", override=True)
+# .envファイルを読み込む (2つ上の階層にあるもの)
+env_path = os.path.join(os.path.dirname(__file__), "../../.env")
+load_dotenv(env_path, override=True)
 
 
 def main():
-    config = {
-        "host": os.environ.get("MYSQL_HOST", "mysql"),
-        "port": int(os.environ.get("MYSQL_PORT", 3306)),
-        "user": os.environ.get("MYSQL_USER", "root"),
-        "password": os.environ.get("MYSQL_PASSWORD", "rootpassword"),
-        "database": os.environ.get("MYSQL_DATABASE", "test01").strip(),
-    }
-
-    print(f"Connecting to MySQL at {config['host']}:{config['port']}...")
-
     try:
-        conn = mysql.connector.connect(**config)
+        print("Connecting to MySQL...")
+        conn = mysql.connector.connect(
+            host=os.getenv("MYSQL_HOST", "mysql"),
+            user=os.getenv("MYSQL_USER", "root"),
+            password=os.getenv("MYSQL_PASSWORD", "pass"),
+            database=os.getenv("MYSQL_DATABASE", "test01").strip(),
+        )
+        print("Connected successfully!")
+        
         cursor = conn.cursor()
         cursor.execute("SELECT VERSION()")
         version = cursor.fetchone()
-        print(f"Connected successfully! MySQL version: {version[0]}")
+        print(f"MySQL version: {version[0]}")
 
         cursor.execute("SELECT DATABASE()")
         current_db = cursor.fetchone()[0]
@@ -50,3 +43,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
