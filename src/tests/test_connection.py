@@ -11,10 +11,10 @@ def main():
     try:
         print("Connecting to MySQL...")
         conn = mysql.connector.connect(
-            host=os.getenv("MYSQL_HOST", "mysql"),
-            user=os.getenv("MYSQL_USER", "root"),
-            password=os.getenv("MYSQL_PASSWORD", "pass"),
-            database=os.getenv("MYSQL_DATABASE", "test01").strip(),
+            host=os.getenv("MYSQL_HOST"),
+            user=os.getenv("MYSQL_USER"),
+            password=os.getenv("MYSQL_PASSWORD"),
+            database=os.getenv("MYSQL_DATABASE"),
         )
         print("Connected successfully!")
         
